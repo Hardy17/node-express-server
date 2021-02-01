@@ -81,14 +81,6 @@ app.get('/producto/buscar/:termino',verificaToken,(req,res)=>{
                 err
             });
         }
-        if(!producto){
-            return res.status(400).json({
-                ok:false,
-                err:{
-                    message:'No se encontraron productos'
-                }
-            })
-        }
         res.json({
             ok:true,
             producto
