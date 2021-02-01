@@ -28,8 +28,8 @@ app.get("/usuario",[verificaToken,verificaAdminRole], function (req, res) {
               cuantos:conteo
             });
 
-          })
-         })
+          });
+         });
 
 });
 //Crear Registro
