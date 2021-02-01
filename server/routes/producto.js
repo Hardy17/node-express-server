@@ -4,7 +4,7 @@ const express= require('express');
 const _ = require('underscore');
 const  Producto= require('../models/producto');
 const {verificaToken}=require('../middlewares/autenticacion');
-const producto = require('../models/producto');
+
 
 const app=express();
 
@@ -14,10 +14,10 @@ app.get('/producto',verificaToken,(req,res)=>{
 
     Producto.find({disponible:true})
     .sort('nombre')
-    .populate('usuario','nombre')
-    .populate('categoria','descripcion')
     .skip(desde)
     .limit(limite)
+    .populate('usuario','nombre')
+    .populate('categoria','descripcion')
     .exec((err,producto)=>{
 
         if(err){
@@ -48,9 +48,8 @@ app.get('/producto/:id',verificaToken,(req,res)=>{
         if(err){
             return res.status(500).json({
                 ok:false,
-                err:{
-                    message:'Producto no encontrado'
-                }
+                err
+                 
             });
         }
         if(!producto){
